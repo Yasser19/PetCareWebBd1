@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PETCAREModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="bill">
+    <Key>
+      <PropertyRef Name="billId" />
+    </Key>
+    <Property Name="billId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="billDate" Type="DateTime" Precision="0" />
+    <Property Name="userId" Type="Int32" />
+    <Property Name="customerId" Type="Int32" />
+    <Property Name="serviceId" Type="Int32" />
+    <Property Name="employeeId" Type="Int32" />
+    <Property Name="total" Type="Decimal" Precision="19" Scale="4" />
+    <NavigationProperty Name="customers" Relationship="Self.fk_customer_bill" FromRole="bill" ToRole="customers" />
+    <NavigationProperty Name="employees" Relationship="Self.fk_employee_bill" FromRole="bill" ToRole="employees" />
+    <NavigationProperty Name="t_services" Relationship="Self.fk_service_bill" FromRole="bill" ToRole="t_services" />
+    <NavigationProperty Name="users" Relationship="Self.fk_user_bill" FromRole="bill" ToRole="users" />
+  </EntityType>
+  <EntityType Name="customers">
+    <Key>
+      <PropertyRef Name="customerId" />
+    </Key>
+    <Property Name="customerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="customerName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="customerMail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="customerPhone" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <NavigationProperty Name="bill" Relationship="Self.fk_customer_bill" FromRole="customers" ToRole="bill" />
+    <NavigationProperty Name="pets" Relationship="Self.fk_pets_customerOwner" FromRole="customers" ToRole="pets" />
+  </EntityType>
+  <EntityType Name="employees">
+    <Key>
+      <PropertyRef Name="employeeId" />
+    </Key>
+    <Property Name="employeeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="employeeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="employeeMail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="employeeSalary" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="employeeBirthday" Type="DateTime" Precision="0" />
+    <Property Name="employeePhone" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <NavigationProperty Name="bill" Relationship="Self.fk_employee_bill" FromRole="employees" ToRole="bill" />
+  </EntityType>
+  <EntityType Name="pets">
+    <Key>
+      <PropertyRef Name="petId" />
+    </Key>
+    <Property Name="petId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="petName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="petType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="petColor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="petRace" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="customerOwnerId" Type="Int32" />
+    <NavigationProperty Name="customers" Relationship="Self.fk_pets_customerOwner" FromRole="pets" ToRole="customers" />
+  </EntityType>
+  <EntityType Name="serviceType">
+    <Key>
+      <PropertyRef Name="serviceTypeId" />
+    </Key>
+    <Property Name="serviceTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="serviceTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="serviceTypeDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="t_services" Relationship="Self.fk_services_serviceType" FromRole="serviceType" ToRole="t_services" />
+  </EntityType>
+  <EntityType Name="t_services">
+    <Key>
+      <PropertyRef Name="serviceId" />
+    </Key>
+    <Property Name="serviceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="serviceName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="serviceDescription" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="servicePrice" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="serviceduration" Type="Time" Precision="7" />
+    <Property Name="serviceTypeId" Type="Int32" />
+    <NavigationProperty Name="bill" Relationship="Self.fk_service_bill" FromRole="t_services" ToRole="bill" />
+    <NavigationProperty Name="serviceType" Relationship="Self.fk_services_serviceType" FromRole="t_services" ToRole="serviceType" />
+  </EntityType>
+  <EntityType Name="users">
+    <Key>
+      <PropertyRef Name="userId" />
+    </Key>
+    <Property Name="userId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="userEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="userPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="userTypeId" Type="Int32" />
+    <NavigationProperty Name="bill" Relationship="Self.fk_user_bill" FromRole="users" ToRole="bill" />
+    <NavigationProperty Name="userstype" Relationship="Self.fk_users_userstype" FromRole="users" ToRole="userstype" />
+  </EntityType>
+  <EntityType Name="userstype">
+    <Key>
+      <PropertyRef Name="userTypeId" />
+    </Key>
+    <Property Name="userTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userTypeName" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="userTypeDescription" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="users" Relationship="Self.fk_users_userstype" FromRole="userstype" ToRole="users" />
+  </EntityType>
+  <Association Name="fk_customer_bill">
+    <End Role="customers" Type="Self.customers" Multiplicity="0..1" />
+    <End Role="bill" Type="Self.bill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="customers">
+        <PropertyRef Name="customerId" />
+      </Principal>
+      <Dependent Role="bill">
+        <PropertyRef Name="customerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_employee_bill">
+    <End Role="employees" Type="Self.employees" Multiplicity="0..1" />
+    <End Role="bill" Type="Self.bill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="employees">
+        <PropertyRef Name="employeeId" />
+      </Principal>
+      <Dependent Role="bill">
+        <PropertyRef Name="employeeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_service_bill">
+    <End Role="t_services" Type="Self.t_services" Multiplicity="0..1" />
+    <End Role="bill" Type="Self.bill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_services">
+        <PropertyRef Name="serviceId" />
+      </Principal>
+      <Dependent Role="bill">
+        <PropertyRef Name="serviceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_user_bill">
+    <End Role="users" Type="Self.users" Multiplicity="0..1" />
+    <End Role="bill" Type="Self.bill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="bill">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_pets_customerOwner">
+    <End Role="customers" Type="Self.customers" Multiplicity="0..1" />
+    <End Role="pets" Type="Self.pets" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="customers">
+        <PropertyRef Name="customerId" />
+      </Principal>
+      <Dependent Role="pets">
+        <PropertyRef Name="customerOwnerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_services_serviceType">
+    <End Role="serviceType" Type="Self.serviceType" Multiplicity="0..1" />
+    <End Role="t_services" Type="Self.t_services" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="serviceType">
+        <PropertyRef Name="serviceTypeId" />
+      </Principal>
+      <Dependent Role="t_services">
+        <PropertyRef Name="serviceTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_users_userstype">
+    <End Role="userstype" Type="Self.userstype" Multiplicity="0..1" />
+    <End Role="users" Type="Self.users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="userstype">
+        <PropertyRef Name="userTypeId" />
+      </Principal>
+      <Dependent Role="users">
+        <PropertyRef Name="userTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PETCAREEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="bill" EntityType="Self.bill" />
+    <EntitySet Name="customers" EntityType="Self.customers" />
+    <EntitySet Name="employees" EntityType="Self.employees" />
+    <EntitySet Name="pets" EntityType="Self.pets" />
+    <EntitySet Name="serviceType" EntityType="Self.serviceType" />
+    <EntitySet Name="t_services" EntityType="Self.t_services" />
+    <EntitySet Name="users" EntityType="Self.users" />
+    <EntitySet Name="userstype" EntityType="Self.userstype" />
+    <AssociationSet Name="fk_customer_bill" Association="Self.fk_customer_bill">
+      <End Role="customers" EntitySet="customers" />
+      <End Role="bill" EntitySet="bill" />
+    </AssociationSet>
+    <AssociationSet Name="fk_employee_bill" Association="Self.fk_employee_bill">
+      <End Role="employees" EntitySet="employees" />
+      <End Role="bill" EntitySet="bill" />
+    </AssociationSet>
+    <AssociationSet Name="fk_service_bill" Association="Self.fk_service_bill">
+      <End Role="t_services" EntitySet="t_services" />
+      <End Role="bill" EntitySet="bill" />
+    </AssociationSet>
+    <AssociationSet Name="fk_user_bill" Association="Self.fk_user_bill">
+      <End Role="users" EntitySet="users" />
+      <End Role="bill" EntitySet="bill" />
+    </AssociationSet>
+    <AssociationSet Name="fk_pets_customerOwner" Association="Self.fk_pets_customerOwner">
+      <End Role="customers" EntitySet="customers" />
+      <End Role="pets" EntitySet="pets" />
+    </AssociationSet>
+    <AssociationSet Name="fk_services_serviceType" Association="Self.fk_services_serviceType">
+      <End Role="serviceType" EntitySet="serviceType" />
+      <End Role="t_services" EntitySet="t_services" />
+    </AssociationSet>
+    <AssociationSet Name="fk_users_userstype" Association="Self.fk_users_userstype">
+      <End Role="userstype" EntitySet="userstype" />
+      <End Role="users" EntitySet="users" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

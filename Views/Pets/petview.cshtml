@@ -1,0 +1,173 @@
+﻿<!DOCTYPE html>
+<html>
+@model  IEnumerable<object>
+
+@{
+    List<PetCareBd1.Models.pets> petList = Model.ToList()[0] as List<PetCareBd1.Models.pets>;
+    List<PetCareBd1.Models.customers> customerList = Model.ToList()[1] as List<PetCareBd1.Models.customers>;
+}
+<head>
+    <meta charset="utf-8">
+    <title>Mascotas</title>
+    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" rel="stylesheet"
+          type='text/css'>
+</head>
+
+
+<body>
+
+    <nav style="height:60px" class="navbar navbar-expand-lg bg-dark">
+
+        <!-- Links -->
+        <ul class="navbar-nav">
+
+            <li class="nav-item"><a style="color:white;margin-right:60px;font-weight:600" href="@Url.Action("employeeview","Employees")"> Empleados</a></li>
+
+
+
+            <li class="nav-item"><a style="color:white;margin-right:60px;font-weight:600" href="@Url.Action("petview","Pets")"> Mascotas</a></li>
+
+
+
+            <li class="nav-item"><a style="color:white;margin-right:60px;font-weight:600" href="@Url.Action("customerview","Customer")"> Clientes</a></li>
+
+
+
+            <li class="nav-item"><a style="color:white;margin-right:60px;font-weight:600" href="@Url.Action("servicesview","Services")"> Servicios y Categorías</a></li>
+            <li class="nav-item"><a style="color:white;margin-right:60px;font-weight:600" href="@Url.Action("billview","Bill")"> Facturación</a></li>
+        </ul>
+
+    </nav>
+
+
+    <div class="container">
+
+
+        <form action="AddPet" method="post">
+            <br>
+            <br>
+            <h2>Mascotas</h2>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="idmascota">ID</label>
+                    <input type="text" class="form-control" id="idmascota" disabled >
+                </div>
+
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="petname">Nombre</label>
+                    <input name="petName" type="text" class="form-control" id="petname" placeholder="tobi" required>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="idtipo">Tipo mascota</label>
+                    <input name="petType" type="text" placeholder="Delfín" class="form-control" id="idtipo" required>
+                </div>
+            </div>
+
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+
+                    <label for="idcolor">Color</label>
+                    <input name="petColor" type="text" placeholder="Gris" class="form-control" id="idcolor" required>
+
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+
+                    <label for="idraza">Raza</label>
+                    <input name="petRace" type="text" placeholder="Biralata" class="form-control" id="idraza" required>
+
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+
+                    <label>Dueño (cliente)</label>
+                    <select name="petOwner" class="form-control" id="customeroptions">
+                        @foreach (var x in customerList) {
+                        
+                        
+                        <option value="@x.customerId">@x.customerName</option>
+                        }
+                      
+                    </select>
+
+                </div>
+            </div>
+
+            <br>
+
+            <button type="submit" class="btn btn-primary">Guardar mascota</button>
+        </form>
+
+
+    </div>
+    <br>
+    <br>
+    <br>
+
+
+    <div class="container">
+        <h2>Mascotas registradas</h2>
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>ID mascota</th>
+                    <th>Nombre</th>
+                    <th>Tipo de mascota</th>
+                    <th>Color</th>
+                    <th>Raza</th>
+                    <th>Dueño(cliente)</th>
+                    <th>Editar</th>
+                    <th>Borrar</th>
+
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var x in petList)
+                {
+
+
+                <tr>
+                    <td>@x.petId </td>
+                    <td>@x.petName</td>
+                    <td>@x.petType</td>
+                    <td>@x.petColor</td>
+                    <td>@x.petRace</td>
+                    <td>@x.customers.customerName</td>
+
+                    <td>
+                        <button type="button" class="btn btn-warning"> <a style="color:white;font-weight:300" href="@Url.Action("GetPetToEdit", "Pets",new {id=x.petId })"> Editar</a> </button>
+
+                    </td>
+                    <td>
+                        <button class="btn btn-danger"> <a style="color:white;font-weight:300" href="@Url.Action("Delete","Pets", new { id=x.petId})"> Borrar</a></button>
+                    </td>
+                
+                    </tr>
+                }
+
+
+
+            </tbody>
+        </table>
+    </div>
+
+
+
+</body>
+
+</html>

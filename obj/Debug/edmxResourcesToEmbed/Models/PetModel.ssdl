@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PETCAREModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="bill">
+    <Key>
+      <PropertyRef Name="billId" />
+    </Key>
+    <Property Name="billId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="billDate" Type="date" />
+    <Property Name="userId" Type="int" />
+    <Property Name="customerId" Type="int" />
+    <Property Name="serviceId" Type="int" />
+    <Property Name="employeeId" Type="int" />
+    <Property Name="total" Type="money" />
+  </EntityType>
+  <EntityType Name="customers">
+    <Key>
+      <PropertyRef Name="customerId" />
+    </Key>
+    <Property Name="customerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="customerName" Type="varchar" MaxLength="50" />
+    <Property Name="customerMail" Type="varchar" MaxLength="50" />
+    <Property Name="customerPhone" Type="char" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="employees">
+    <Key>
+      <PropertyRef Name="employeeId" />
+    </Key>
+    <Property Name="employeeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="employeeName" Type="varchar" MaxLength="50" />
+    <Property Name="employeeMail" Type="varchar" MaxLength="50" />
+    <Property Name="employeeSalary" Type="money" />
+    <Property Name="employeeBirthday" Type="date" />
+    <Property Name="employeePhone" Type="char" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="pets">
+    <Key>
+      <PropertyRef Name="petId" />
+    </Key>
+    <Property Name="petId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="petName" Type="varchar" MaxLength="50" />
+    <Property Name="petType" Type="varchar" MaxLength="50" />
+    <Property Name="petColor" Type="varchar" MaxLength="50" />
+    <Property Name="petRace" Type="varchar" MaxLength="50" />
+    <Property Name="customerOwnerId" Type="int" />
+  </EntityType>
+  <EntityType Name="serviceType">
+    <Key>
+      <PropertyRef Name="serviceTypeId" />
+    </Key>
+    <Property Name="serviceTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="serviceTypeName" Type="varchar" MaxLength="50" />
+    <Property Name="serviceTypeDescription" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="t_services">
+    <Key>
+      <PropertyRef Name="serviceId" />
+    </Key>
+    <Property Name="serviceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="serviceName" Type="varchar" MaxLength="50" />
+    <Property Name="serviceDescription" Type="varchar" MaxLength="100" />
+    <Property Name="servicePrice" Type="money" />
+    <Property Name="serviceduration" Type="time" Precision="7" />
+    <Property Name="serviceTypeId" Type="int" />
+  </EntityType>
+  <EntityType Name="users">
+    <Key>
+      <PropertyRef Name="userId" />
+    </Key>
+    <Property Name="userId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userName" Type="varchar" MaxLength="50" />
+    <Property Name="userEmail" Type="varchar" MaxLength="50" />
+    <Property Name="userPassword" Type="varchar" MaxLength="50" />
+    <Property Name="userTypeId" Type="int" />
+  </EntityType>
+  <EntityType Name="userstype">
+    <Key>
+      <PropertyRef Name="userTypeId" />
+    </Key>
+    <Property Name="userTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userTypeName" Type="varchar" MaxLength="40" />
+    <Property Name="userTypeDescription" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <Association Name="fk_customer_bill">
+    <End Role="customers" Type="Self.customers" Multiplicity="0..1" />
+    <End Role="bill" Type="Self.bill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="customers">
+        <PropertyRef Name="customerId" />
+      </Principal>
+      <Dependent Role="bill">
+        <PropertyRef Name="customerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_employee_bill">
+    <End Role="employees" Type="Self.employees" Multiplicity="0..1" />
+    <End Role="bill" Type="Self.bill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="employees">
+        <PropertyRef Name="employeeId" />
+      </Principal>
+      <Dependent Role="bill">
+        <PropertyRef Name="employeeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_pets_customerOwner">
+    <End Role="customers" Type="Self.customers" Multiplicity="0..1" />
+    <End Role="pets" Type="Self.pets" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="customers">
+        <PropertyRef Name="customerId" />
+      </Principal>
+      <Dependent Role="pets">
+        <PropertyRef Name="customerOwnerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_service_bill">
+    <End Role="t_services" Type="Self.t_services" Multiplicity="0..1" />
+    <End Role="bill" Type="Self.bill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_services">
+        <PropertyRef Name="serviceId" />
+      </Principal>
+      <Dependent Role="bill">
+        <PropertyRef Name="serviceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_services_serviceType">
+    <End Role="serviceType" Type="Self.serviceType" Multiplicity="0..1" />
+    <End Role="t_services" Type="Self.t_services" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="serviceType">
+        <PropertyRef Name="serviceTypeId" />
+      </Principal>
+      <Dependent Role="t_services">
+        <PropertyRef Name="serviceTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_user_bill">
+    <End Role="users" Type="Self.users" Multiplicity="0..1" />
+    <End Role="bill" Type="Self.bill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="bill">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_users_userstype">
+    <End Role="userstype" Type="Self.userstype" Multiplicity="0..1" />
+    <End Role="users" Type="Self.users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="userstype">
+        <PropertyRef Name="userTypeId" />
+      </Principal>
+      <Dependent Role="users">
+        <PropertyRef Name="userTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PETCAREModelStoreContainer">
+    <EntitySet Name="bill" EntityType="Self.bill" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="customers" EntityType="Self.customers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="employees" EntityType="Self.employees" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="pets" EntityType="Self.pets" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="serviceType" EntityType="Self.serviceType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="t_services" EntityType="Self.t_services" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="userstype" EntityType="Self.userstype" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="fk_customer_bill" Association="Self.fk_customer_bill">
+      <End Role="customers" EntitySet="customers" />
+      <End Role="bill" EntitySet="bill" />
+    </AssociationSet>
+    <AssociationSet Name="fk_employee_bill" Association="Self.fk_employee_bill">
+      <End Role="employees" EntitySet="employees" />
+      <End Role="bill" EntitySet="bill" />
+    </AssociationSet>
+    <AssociationSet Name="fk_pets_customerOwner" Association="Self.fk_pets_customerOwner">
+      <End Role="customers" EntitySet="customers" />
+      <End Role="pets" EntitySet="pets" />
+    </AssociationSet>
+    <AssociationSet Name="fk_service_bill" Association="Self.fk_service_bill">
+      <End Role="t_services" EntitySet="t_services" />
+      <End Role="bill" EntitySet="bill" />
+    </AssociationSet>
+    <AssociationSet Name="fk_services_serviceType" Association="Self.fk_services_serviceType">
+      <End Role="serviceType" EntitySet="serviceType" />
+      <End Role="t_services" EntitySet="t_services" />
+    </AssociationSet>
+    <AssociationSet Name="fk_user_bill" Association="Self.fk_user_bill">
+      <End Role="users" EntitySet="users" />
+      <End Role="bill" EntitySet="bill" />
+    </AssociationSet>
+    <AssociationSet Name="fk_users_userstype" Association="Self.fk_users_userstype">
+      <End Role="userstype" EntitySet="userstype" />
+      <End Role="users" EntitySet="users" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

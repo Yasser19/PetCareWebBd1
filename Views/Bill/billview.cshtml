@@ -1,0 +1,203 @@
+﻿<!DOCTYPE html>
+<html>
+@model  IEnumerable<object>
+
+@{
+    List<PetCareBd1.Models.t_services> servlist = Model.ToList()[0] as List<PetCareBd1.Models.t_services>;
+     List<PetCareBd1.Models.employees> employeelist = Model.ToList()[1] as List<PetCareBd1.Models.employees>;
+    List<PetCareBd1.Models.customers> customerlist = Model.ToList()[2] as List<PetCareBd1.Models.customers>;
+    List<PetCareBd1.Models.bill> bill_list = Model.ToList()[3] as List<PetCareBd1.Models.bill>;
+   
+}
+<head>
+    <meta charset="utf-8">
+    <title>Facturación</title>
+    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" rel="stylesheet"
+          type='text/css'>
+
+</head>
+
+
+<body>
+   
+    <nav style="height:60px" class="navbar navbar-expand-lg bg-dark">
+
+        <!-- Links -->
+        <ul class="navbar-nav">
+
+            <li class="nav-item"><a style="color:white;margin-right:60px;font-weight:600" href="@Url.Action("employeeview","Employees")"> Empleados</a></li>
+
+
+
+            <li class="nav-item"><a style="color:white;margin-right:60px;font-weight:600" href="@Url.Action("petview","Pets")"> Mascotas</a></li>
+
+
+
+            <li class="nav-item"><a style="color:white;margin-right:60px;font-weight:600" href="@Url.Action("customerview","Customer")"> Clientes</a></li>
+
+
+
+            <li class="nav-item"><a style="color:white;margin-right:60px;font-weight:600" href="@Url.Action("servicesview","Services")"> Servicios y Categorías</a></li>
+            <li class="nav-item"><a style="color:white;margin-right:60px;font-weight:600" href="@Url.Action("billview","Bill")"> Facturación</a></li>
+        </ul>
+
+    </nav>
+
+    <br>
+    <br>
+    <div class="container">
+
+
+        <form action="AddBill" method="post">
+            <br>
+            <br>
+            <h2>Facturas</h2>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="idFactura">ID</label>
+                    <input type="text" class="form-control" id="idFactura" disabled>
+                </div>
+
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+
+                    <label for="fecha">Duración</label>
+                    <input name="billDate" type="text" placeholder="Current Date" class="form-control" id="fecha" disabled>
+
+                </div>
+            </div>
+
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+
+                    <label>Cliente</label>
+                    <select name="customerId" class="form-control" id="idCliente">
+
+                        @foreach (var x in customerlist)
+                        {
+
+
+                            <option value="@x.customerId">@x.customerName</option>
+
+
+                        }
+                    </select>
+
+
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+
+                    <label>Servicios ofrecido</label>
+                    <select name="serviceId" class="form-control" id="idservicio">
+
+                        @foreach (var x in servlist)
+                        {
+
+
+                            <option value="@x.serviceId">@x.serviceName</option>
+
+
+                        }
+                    </select>
+
+
+                </div>
+            </div>
+
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+
+                    <label>Empleado para facturar</label>
+                    <select name="employeeId" class="form-control" id="idempleadofactura">
+
+                        @foreach (var x in employeelist)
+                        {
+
+
+                            <option value="@x.employeeId">@x.employeeName</option>
+
+
+                        }
+                    </select>
+
+
+                </div>
+            </div>
+            <br />
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+
+                    <label for="billtotal">Total</label>
+                    <input name="total" type="text" placeholder="500" class="form-control" id="billtotal" required>
+
+                </div>
+            </div>
+
+
+            <br>
+
+            <button type="submit" class="btn btn-primary">Facturar</button>
+        </form>
+
+
+    </div>
+    <br>
+    <br>
+    <br>
+
+
+    <div class="container">
+        <h2>Facturas registradas</h2>
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>ID Factura</th>
+                    <th>Fecha de facturación</th>
+                    <th>Usuario del sistema</th>
+                    <th>Cliente</th>
+                    <th>Servicio ofrecido</th>
+                    <th>Facturador</th>
+                    <th>Total factura</th>
+                  
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var i in bill_list)
+                {
+
+
+                    <tr>
+                        <td>@i.billId</td>
+                        <td>@i.billDate</td>
+                        <td>ylluberes</td>
+                        <td>@i.customers.customerName</td>
+                        <td>@i.t_services.serviceName</td>
+                        <td>@i.employees.employeeName</td>
+                        <td>@i.total</td>
+
+                       
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+
+
+
+</body>
+
+</html>

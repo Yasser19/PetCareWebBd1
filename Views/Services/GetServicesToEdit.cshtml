@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+<html>
+@model  IEnumerable<object>
+
+@{
+    List<PetCareBd1.Models.t_services> servlist = Model.ToList()[0] as List<PetCareBd1.Models.t_services>;
+    List<PetCareBd1.Models.serviceType> catlist = Model.ToList()[1] as List<PetCareBd1.Models.serviceType>;
+}
+<head>
+    <meta charset="utf-8">
+    <title>Servicios</title>
+    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" rel="stylesheet"
+          type='text/css'>
+
+</head>
+
+<body>
+    <div class="container">
+
+
+        <form action="~/Services/EditService" method="post">
+            <br>
+            <br>
+            <h2>Servicios</h2>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="idservicio">ID</label>
+                    <input value="@servlist[0].serviceId" name="idserv" type="text" class="form-control" id="idservicio" readonly>
+                </div>
+
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="servicename">Nombre</label>
+                    <input value="@servlist[0].serviceName" name="serviceName" type="text" class="form-control" id="servicename" placeholder="Baño y corte" required>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="servicedesc">Descripción del servicio</label>
+                    <textarea name="serviceDescription" id="servicedesc" class="form-control" required>@servlist[0].serviceDescription</textarea>
+                </div>
+            </div>
+
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+
+                    <label for="montoservicio">Monto</label>
+                    <input value="@servlist[0].servicePrice" name="serviceMonto" type="text" placeholder="150" class="form-control" id="montoservicio" required>
+
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+
+                    <label for="duracionid">Duración</label>
+                    <input value="@servlist[0].serviceduration" name="serviceDuration" type="text" placeholder="00:30:00" class="form-control" id="duracionid">
+
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+
+                    <label for="dis_cat">Categoría</label>
+                    <input value="@servlist[0].serviceType.serviceTypeName" name="test" type="text" placeholder="Categoría" class="form-control" id="dis_cat" disabled>
+
+                </div>
+            </div>
+
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+
+                    <label>Categoría</label>
+                    <select name="servtypes" class="form-control" id="idtiposervicio">
+
+
+
+                        @foreach (var x in catlist)
+                        {
+
+
+                            <option value="@x.serviceTypeId">@x.serviceTypeName</option>
+
+
+                        }
+                    </select>
+                    
+
+                </div>
+            </div>
+
+            <br>
+
+            <button type="submit" class="btn btn-primary">Guardar Servicio</button>
+        </form>
+    </div>
+</body>
+</html>

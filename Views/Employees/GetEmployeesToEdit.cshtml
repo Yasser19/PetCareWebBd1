@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html>
+@model PetCareBd1.Models.employees
+<head>
+    <meta charset="utf-8">
+    <title>Empleados</title>
+    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css"
+          rel="stylesheet" type='text/css'>
+</head>
+
+
+<body>
+
+    <nav class="navbar navbar-expand-sm bg-dark">
+
+        <!-- Links -->
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <h2 class="bannerh2">Petcare</h2>
+            </li>
+
+        </ul>
+
+    </nav>
+
+
+    <div class="container">
+
+
+        <form action="~/Employees/EditEmployee" method="post">
+            <br>
+            <br>
+            <h2>Empleados</h2>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="employeeid">ID</label>
+                    <input name ="idemp"value="@Model.employeeId" type="text" class="form-control" id="employeeid" readonly >
+                </div>
+
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="empname">Nombre</label>
+                    <input value ="@Model.employeeName" name="employeeName" type="text" class="form-control" id="empname" placeholder="Juan Pérez" required>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="empmail">Email</label>
+                    <input value="@Model.employeeMail" name="employeeMail" type="email" placeholder="Juanperez@gmail.com" class="form-control" id="empmail" required>
+                </div>
+            </div>
+
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+
+                    <label for="employeesalary">Salario</label>
+                    <input value="@Model.employeeSalary" name="employeeSalary" type="text" placeholder="25000" class="form-control" id="employeesalary" required>
+
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+
+                    <label for="employeedate">Fecha de nacimiento</label>
+                    <input value ="@Model.employeeBirthday"name="employeeBirthday" type="text" placeholder="01-01-1985" class="form-control" id="employeedate" required>
+
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+
+                    <label for="employeephone">Télefono</label>
+                    <input value="@Model.employeePhone" name="employeePhone" type="text" placeholder="8094838138" class="form-control" id="employeephone" required>
+
+                </div>
+            </div>
+
+            <br>
+
+            <button type="submit" class="btn btn-primary">Actualizar empleado</button>
+        </form>
+
+
+    </div>
+</body>
+</html>

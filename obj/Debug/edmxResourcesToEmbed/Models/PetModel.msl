@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="PETCAREModelStoreContainer" CdmEntityContainer="PETCAREEntities">
+    <EntitySetMapping Name="bill">
+      <EntityTypeMapping TypeName="PETCAREModel.bill">
+        <MappingFragment StoreEntitySet="bill">
+          <ScalarProperty Name="billId" ColumnName="billId" />
+          <ScalarProperty Name="billDate" ColumnName="billDate" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="customerId" ColumnName="customerId" />
+          <ScalarProperty Name="serviceId" ColumnName="serviceId" />
+          <ScalarProperty Name="employeeId" ColumnName="employeeId" />
+          <ScalarProperty Name="total" ColumnName="total" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="customers">
+      <EntityTypeMapping TypeName="PETCAREModel.customers">
+        <MappingFragment StoreEntitySet="customers">
+          <ScalarProperty Name="customerId" ColumnName="customerId" />
+          <ScalarProperty Name="customerName" ColumnName="customerName" />
+          <ScalarProperty Name="customerMail" ColumnName="customerMail" />
+          <ScalarProperty Name="customerPhone" ColumnName="customerPhone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="employees">
+      <EntityTypeMapping TypeName="PETCAREModel.employees">
+        <MappingFragment StoreEntitySet="employees">
+          <ScalarProperty Name="employeeId" ColumnName="employeeId" />
+          <ScalarProperty Name="employeeName" ColumnName="employeeName" />
+          <ScalarProperty Name="employeeMail" ColumnName="employeeMail" />
+          <ScalarProperty Name="employeeSalary" ColumnName="employeeSalary" />
+          <ScalarProperty Name="employeeBirthday" ColumnName="employeeBirthday" />
+          <ScalarProperty Name="employeePhone" ColumnName="employeePhone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="pets">
+      <EntityTypeMapping TypeName="PETCAREModel.pets">
+        <MappingFragment StoreEntitySet="pets">
+          <ScalarProperty Name="petId" ColumnName="petId" />
+          <ScalarProperty Name="petName" ColumnName="petName" />
+          <ScalarProperty Name="petType" ColumnName="petType" />
+          <ScalarProperty Name="petColor" ColumnName="petColor" />
+          <ScalarProperty Name="petRace" ColumnName="petRace" />
+          <ScalarProperty Name="customerOwnerId" ColumnName="customerOwnerId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="serviceType">
+      <EntityTypeMapping TypeName="PETCAREModel.serviceType">
+        <MappingFragment StoreEntitySet="serviceType">
+          <ScalarProperty Name="serviceTypeId" ColumnName="serviceTypeId" />
+          <ScalarProperty Name="serviceTypeName" ColumnName="serviceTypeName" />
+          <ScalarProperty Name="serviceTypeDescription" ColumnName="serviceTypeDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_services">
+      <EntityTypeMapping TypeName="PETCAREModel.t_services">
+        <MappingFragment StoreEntitySet="t_services">
+          <ScalarProperty Name="serviceId" ColumnName="serviceId" />
+          <ScalarProperty Name="serviceName" ColumnName="serviceName" />
+          <ScalarProperty Name="serviceDescription" ColumnName="serviceDescription" />
+          <ScalarProperty Name="servicePrice" ColumnName="servicePrice" />
+          <ScalarProperty Name="serviceduration" ColumnName="serviceduration" />
+          <ScalarProperty Name="serviceTypeId" ColumnName="serviceTypeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="PETCAREModel.users">
+        <MappingFragment StoreEntitySet="users">
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="userName" ColumnName="userName" />
+          <ScalarProperty Name="userEmail" ColumnName="userEmail" />
+          <ScalarProperty Name="userPassword" ColumnName="userPassword" />
+          <ScalarProperty Name="userTypeId" ColumnName="userTypeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="userstype">
+      <EntityTypeMapping TypeName="PETCAREModel.userstype">
+        <MappingFragment StoreEntitySet="userstype">
+          <ScalarProperty Name="userTypeId" ColumnName="userTypeId" />
+          <ScalarProperty Name="userTypeName" ColumnName="userTypeName" />
+          <ScalarProperty Name="userTypeDescription" ColumnName="userTypeDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
