@@ -28,6 +28,8 @@
         <!-- Links -->
         <ul class="navbar-nav">
 
+            <li class="nav-item"><a style="color:white;margin-right:60px;font-weight:600" href="@Url.Action("welcomepage","Login")">Dashboard</a></li>
+
             <li class="nav-item"><a style="color:white;margin-right:60px;font-weight:600" href="@Url.Action("employeeview","Employees")"> Empleados</a></li>
 
 
@@ -57,8 +59,8 @@
             <h2>Facturas</h2>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="idFactura">ID</label>
-                    <input type="text" class="form-control" id="idFactura" disabled>
+                   @* <label for="idFactura">ID</label>*@
+                    <input type="text" class="form-control" id="idFactura" disabled hidden>
                 </div>
 
             </div>
@@ -67,7 +69,7 @@
                 <div class="form-group col-md-6">
 
                     <label for="fecha">Duración</label>
-                    <input name="billDate" type="text" placeholder="Current Date" class="form-control" id="fecha" disabled>
+                    <input name="billDate" type="text" placeholder="@DateTime.Now.ToShortDateString() | @DateTime.Now.AddDays(15.0).ToShortDateString()  " class="form-control" id="fecha" disabled>
 
                 </div>
             </div>

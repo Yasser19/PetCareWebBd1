@@ -37,7 +37,7 @@ namespace PetCareBd1.Controllers
                 }else
                 {
                
-                    return Redirect("Index");
+                   // return Redirect("Index");
                 }
             }
             return View(UserList);

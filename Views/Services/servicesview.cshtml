@@ -24,6 +24,8 @@
 
         <!-- Links -->
         <ul class="navbar-nav">
+            <li class="nav-item"><a style="color:white;margin-right:60px;font-weight:600" href="@Url.Action("welcomepage","Login")">Dashboard</a></li>
+
 
             <li class="nav-item"><a style="color:white;margin-right:60px;font-weight:600" href="@Url.Action("employeeview","Employees")"> Empleados</a></li>
 
@@ -52,8 +54,8 @@
             <h2>Categoría de servicios</h2>
             <div class="form-row">
                 <div class="form-group col-md-5">
-                    <label for="idtiposervicio">ID</label>
-                    <input  type="text" class="form-control" id="idtiposervicio" disabled>
+                    @*<label for="idtiposervicio">ID</label>*@
+                    <input  type="text" class="form-control" id="idtiposervicio" disabled hidden>
                 </div>
 
             </div>
@@ -89,8 +91,8 @@
             <h2>Servicios</h2>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="idservicio">ID</label>
-                    <input name="idserv" type="text" class="form-control" id="idservicio" disabled>
+                   @* <label for="idservicio">ID</label>*@
+                    <input name="idserv" type="text" class="form-control" id="idservicio" disabled hidden>
                 </div>
 
             </div>

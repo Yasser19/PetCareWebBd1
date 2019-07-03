@@ -4,14 +4,17 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Free Bootstrap Admin Template : Binary Admin</title>
-   
+
     <link href="../assets/css/bootstrap.css" rel="stylesheet" />
-   
+
     <link href="../assets/css/font-awesome.css" rel="stylesheet" />
 
     <link href="../assets/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
-    
+
     <link href="../assets/css/custom.css" rel="stylesheet" />
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
 
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
 </head>
@@ -30,7 +33,7 @@
             <div style="color: white;
 padding: 15px 50px 5px 50px;
 float: right;
-font-size: 16px;">Last access : 30 May 2014 &nbsp;<a href="@Url.Action("index","Login")" class="btn btn-danger square-btn-adjust">Logout</a></div>
+font-size: 16px;">Last access : @DateTime.Now.ToShortDateString() &nbsp;<a href="@Url.Action("index","Login")" class="btn btn-danger square-btn-adjust">Logout</a></div>
         </nav>
         <!-- /. NAV TOP  -->
         <nav class="navbar-default navbar-side" role="navigation">
@@ -38,9 +41,10 @@ font-size: 16px;">Last access : 30 May 2014 &nbsp;<a href="@Url.Action("index","
                 <ul class="nav" id="main-menu">
 
 
+                    <li class="nav-item"><a style="color:white;margin-right:60px;font-weight:600" href="@Url.Action("welcomepage","Login")">Dashboard</a></li>
 
                     <li>
-                      <a href="@Url.Action("servicesview","Services")"><i class="fa fa-desktop fa-3x"></i> Servicios</a>
+                        <a href="@Url.Action("servicesview","Services")"><i class="fa fa-desktop fa-3x"></i> Servicios</a>
                     </li>
                     <li>
                         <a href="@Url.Action("employeeview","Employees")"><i class="fa fa-qrcode fa-3x"></i>Empleados</a>
@@ -49,14 +53,14 @@ font-size: 16px;">Last access : 30 May 2014 &nbsp;<a href="@Url.Action("index","
                         <a href="@Url.Action("customerview","Customer")"><i class="fa fa-bar-chart-o fa-3x"></i> Clientes</a>
                     </li>
                     <li>
-                        <a href="@Url.Action("petview","Pets")"><i class="fa fa-table fa-3x"></i> Mascotas</a>
+                        <a href="@Url.Action("petview","Pets")"><i class="fa fa-heart fa-3x"></i> Mascotas</a>
                     </li>
                     <li>
                         <a href="@Url.Action("billview","Bill")"><i class="fa fa-table fa-3x"></i> Facturas</a>
                     </li>
-                 
 
-                  
+
+
                 </ul>
 
             </div>
@@ -77,7 +81,7 @@ font-size: 16px;">Last access : 30 May 2014 &nbsp;<a href="@Url.Action("index","
                     <div class="col-md-3 col-sm-6 col-xs-6">
                         <div class="panel panel-back noti-box">
                             <span class="icon-box bg-color-red set-icon">
-                                <i class="fa fa-envelope-o"></i>
+                                <i class="fa fa-user"></i>
                             </span>
                             <div class="text-box">
                                 <p class="main-text">Clientes</p>
@@ -88,7 +92,7 @@ font-size: 16px;">Last access : 30 May 2014 &nbsp;<a href="@Url.Action("index","
                     <div class="col-md-3 col-sm-6 col-xs-6">
                         <div class="panel panel-back noti-box">
                             <span class="icon-box bg-color-green set-icon">
-                                <i class="fa fa-bars"></i>
+                                <i class="fa fa-heart"></i>
                             </span>
                             <div class="text-box">
                                 <p class="main-text">Mascotas</p>
@@ -99,7 +103,7 @@ font-size: 16px;">Last access : 30 May 2014 &nbsp;<a href="@Url.Action("index","
                     <div class="col-md-3 col-sm-6 col-xs-6">
                         <div class="panel panel-back noti-box">
                             <span class="icon-box bg-color-blue set-icon">
-                                <i class="fa fa-bell-o"></i>
+                                <i class="fa fa-laptop"></i>
                             </span>
                             <div class="text-box">
                                 <p class="main-text">Servicios</p>
@@ -110,7 +114,7 @@ font-size: 16px;">Last access : 30 May 2014 &nbsp;<a href="@Url.Action("index","
                     <div class="col-md-3 col-sm-6 col-xs-6">
                         <div class="panel panel-back noti-box">
                             <span class="icon-box bg-color-brown set-icon">
-                                <i class="fa fa-rocket"></i>
+                                <i class="fa fa-table"></i>
                             </span>
                             <div class="text-box">
                                 <p class="main-text">Factura</p>
