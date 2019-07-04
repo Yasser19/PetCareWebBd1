@@ -106,5 +106,16 @@ namespace PetCareBd1.Controllers
             }
             return Redirect("customerview");
         }
+
+        public List<pets> GetPetByCustomer(int customerId)
+        {
+            List<pets> pets = new List<pets>();
+            PETCAREEntities ef = new PETCAREEntities();
+            object[] arr = pets.ToArray();
+         //   pets = ef.pets.SqlQuery("select petName from pets join customers on customers.customerId = pets.customerOwnerId where customers.customerId=@p0",arr);
+
+
+            return pets;
+        }
     }
 }
