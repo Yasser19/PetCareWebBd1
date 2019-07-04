@@ -16,7 +16,7 @@ namespace PetCareBd1.Controllers
         {
             PETCAREEntities db = new PETCAREEntities();
             List<t_services> serviceList = db.t_services.SqlQuery("select * from t_services").ToList<t_services>();
-            List<serviceType> types = db.serviceType.SqlQuery("select * from serviceType").ToList<serviceType>();
+            List<serviceType> types = db.serviceTypes.SqlQuery("select * from serviceType").ToList<serviceType>();
             List<Object> DoubleViewModel = new List<Object>();
             DoubleViewModel.Add(serviceList);
             DoubleViewModel.Add(types);
@@ -24,7 +24,7 @@ namespace PetCareBd1.Controllers
 
             return View(DoubleViewModel);
         }
-
+        // Agregar nuevo Servicio!
         [HttpPost]
        public ActionResult AddServiceType(String serviceTypeName, String serviceTypeDescription)
         {
@@ -66,6 +66,8 @@ namespace PetCareBd1.Controllers
            
             return Redirect("servicesview");
         }
+
+        // Editar el servicio del sitema
         [HttpPost]
         public ActionResult EditService (int ?idserv, String serviceName, String serviceDescription, Decimal serviceMonto,DateTime serviceDuration,int servtypes)
         {
@@ -93,6 +95,7 @@ namespace PetCareBd1.Controllers
             }
             return Redirect("servicesview");
         }
+        // obtiene los datos de la factura a editar
         public ActionResult GetServicesToEdit (int ?id)
         {
             PETCAREEntities ef = new PETCAREEntities();
@@ -100,7 +103,7 @@ namespace PetCareBd1.Controllers
            
             Debug.WriteLine(id);
             List<Object> AnotherDoubleModel = new List<Object>();
-            List<serviceType> types = ef.serviceType.SqlQuery("select * from serviceType").ToList<serviceType>();
+            List<serviceType> types = ef.serviceTypes.SqlQuery("select * from serviceType").ToList<serviceType>();
             List<t_services> thefirstIs = ef.t_services.SqlQuery("select * from t_services").ToList<t_services>();
 
             if (id != null)
@@ -123,7 +126,7 @@ namespace PetCareBd1.Controllers
 
             
         }
-
+        // Elimina la factura deseada
         public ActionResult Delete(int ?id)
         {
             PETCAREEntities db = new PETCAREEntities();
