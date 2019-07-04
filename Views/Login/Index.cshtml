@@ -15,37 +15,35 @@
     </head>
 
     <body>
-
         <nav class="navbar navbar-expand-sm bg-dark">
-
             <!-- Links -->
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <h2 class="bannerh2">Petcare</h2>
                 </li>
-
             </ul>
-
         </nav>
-      
 
-
+        <!-- Ensenado el formulario de Login! -->
         <div class="container">
             <div class="row">
                 <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
                     <div class="card card-signin my-5">
                         <div class="card-body">
+                            <!-- imput para que el usuario introduzca datos -->
+
                             <h5 class="card-title text-center">Sign In</h5>
                             <form id="formlgin" class="form-signin" action="/Login/TryLogin" method="post">
                                 <div class="form-label-group">
                                     <input type="text" id="uname" class="form-control" placeholder="User name" name="Username" required>
                                     <label for="uname">Nombre de usuario</label>
                                 </div>
-
                                 <div class="form-label-group">
                                     <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="Password" required>
                                     <label for="inputPassword">Password</label>
                                 </div>
+                                <!-- Ensenado el Tipo de Usuario en el Login! -->
+
                                 <div class="form-label-group">
                                     <select name="utype" class="form-control">
                                         @foreach (var x in Model)
@@ -53,12 +51,9 @@
                                             <option>@x.userTypeName</option>
                                         }
                                     </select>
-
                                 </div><br />
-
                                 <button type="submit" class="btn btn-success"> Ingresar</button>
                                 @ViewBag.Message
-
                             </form>
                         </div>
                     </div>
