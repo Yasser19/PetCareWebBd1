@@ -13,6 +13,7 @@ namespace PetCareBd1.Controllers
     public class CustomerController : Controller
     {
         // GET: Customer
+        
         public ActionResult customerview()
         {
             PETCAREEntities ef = new PETCAREEntities();
