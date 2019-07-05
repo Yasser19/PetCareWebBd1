@@ -16,7 +16,7 @@ namespace PetCareBd1.Controllers
         {
             PETCAREEntities db = new PETCAREEntities();
             List<t_services> serviceList = db.t_services.SqlQuery("select * from t_services").ToList<t_services>();
-            List<serviceType> types = db.serviceTypes.SqlQuery("select * from serviceType").ToList<serviceType>();
+            List<serviceType> types = db.serviceType.SqlQuery("select * from serviceType").ToList<serviceType>();
             List<Object> DoubleViewModel = new List<Object>();
             DoubleViewModel.Add(serviceList);
             DoubleViewModel.Add(types);
@@ -103,7 +103,7 @@ namespace PetCareBd1.Controllers
            
             Debug.WriteLine(id);
             List<Object> AnotherDoubleModel = new List<Object>();
-            List<serviceType> types = ef.serviceTypes.SqlQuery("select * from serviceType").ToList<serviceType>();
+            List<serviceType> types = ef.serviceType.SqlQuery("select * from serviceType").ToList<serviceType>();
             List<t_services> thefirstIs = ef.t_services.SqlQuery("select * from t_services").ToList<t_services>();
 
             if (id != null)
